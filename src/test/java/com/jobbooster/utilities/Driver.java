@@ -22,18 +22,18 @@ public class Driver {
             String browserType = ConfigurationReader.getProperty("browser");
 
             switch (browserType) {
-                case "chrome" -> {
+                case "chrome":
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--remote-allow-origins=*");
                     driverPool.set(new ChromeDriver(options));
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                }
-                case "firefox" -> {
+                    break;
+                case "firefox":
                     driverPool.set(new FirefoxDriver());
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                }
+                    break;
             }
         }
         return driverPool.get();
